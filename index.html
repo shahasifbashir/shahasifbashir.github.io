@@ -1,146 +1,468 @@
-<!DOCTYPE HTML>
-<!--
-	Prologue by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-	<head>
-		<title>Shah Asif Bashir</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel = "icon" href = "images/me.jpg" type = "image/x-icon">
-		<link rel="stylesheet" href="assets/css/main.css" />
-	</head>
-	<body class="is-preload">
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shah Asif Bashir | Interactive Resume</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Neutrals (Slate, Zinc, Stone) -->
+    <!-- Application Structure Plan: A single-page application with a sticky top navigation bar for seamless scrolling between sections (Summary, Skills, Experience, Projects, Education). This structure is intuitive and allows recruiters to quickly access specific information. The "Experience" section is designed as an interactive timeline, and "Projects" as a card-based showcase with modals containing details and Chart.js visualizations. This approach transforms a static document into an engaging portfolio, highlighting key achievements visually and encouraging user interaction. -->
+    <!-- Visualization & Content Choices: 
+        - Report Info: Key project achievements (e.g., 96% accuracy, 10% improvement).
+        - Goal: Compare & Inform.
+        - Viz/Presentation Method: Donut and Bar charts using Chart.js to make quantitative data more impactful and memorable.
+        - Interaction: Charts are revealed in a modal when a user clicks on a project card, focusing attention on specific accomplishments.
+        - Justification: Visualizing key metrics makes them stand out more than plain text, effectively demonstrating the candidate's impact.
+        - Library/Method: Chart.js (Canvas).
+        - CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* slate-50 */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 250px;
+            max-height: 300px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 300px;
+            }
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            width: 1rem;
+            height: 1rem;
+            border-radius: 50%;
+            left: -2.5rem;
+            top: 0.25rem;
+            background-color: #334155; /* slate-700 */
+            border: 3px solid #cbd5e1; /* slate-300 */
+        }
+        .modal-enter {
+            opacity: 0;
+            transform: scale(0.95);
+        }
+        .modal-enter-active {
+            opacity: 1;
+            transform: scale(1);
+            transition: opacity 300ms, transform 300ms;
+        }
+        .modal-leave {
+            opacity: 1;
+            transform: scale(1);
+        }
+        .modal-leave-active {
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 300ms, transform 300ms;
+        }
+    </style>
+</head>
+<body class="text-slate-700">
 
-		<!-- Header -->
-			<div id="header">
+    <header class="bg-slate-800 text-white shadow-md sticky top-0 z-40">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <h1 class="text-xl md:text-2xl font-bold text-slate-100">Shah Asif Bashir</h1>
+            <div class="hidden md:flex space-x-6">
+                <a href="#summary" class="hover:text-sky-300 transition-colors">Summary</a>
+                <a href="#skills" class="hover:text-sky-300 transition-colors">Skills</a>
+                <a href="#experience" class="hover:text-sky-300 transition-colors">Experience</a>
+                <a href="#projects" class="hover:text-sky-300 transition-colors">Projects</a>
+                <a href="#education" class="hover:text-sky-300 transition-colors">Education</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden p-2">
+                <span class="block w-6 h-0.5 bg-white mb-1"></span>
+                <span class="block w-6 h-0.5 bg-white mb-1"></span>
+                <span class="block w-6 h-0.5 bg-white"></span>
+            </button>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden bg-slate-800">
+            <a href="#summary" class="block py-2 px-6 text-sm hover:bg-slate-700">Summary</a>
+            <a href="#skills" class="block py-2 px-6 text-sm hover:bg-slate-700">Skills</a>
+            <a href="#experience" class="block py-2 px-6 text-sm hover:bg-slate-700">Experience</a>
+            <a href="#projects" class="block py-2 px-6 text-sm hover:bg-slate-700">Projects</a>
+            <a href="#education" class="block py-2 px-6 text-sm hover:bg-slate-700">Education</a>
+        </div>
+    </header>
 
-				<div class="top">
+    <main class="container mx-auto p-4 md:p-8">
+        
+        <section id="summary" class="my-10 scroll-mt-20">
+            <div class="bg-white p-8 rounded-xl shadow-lg border border-slate-200">
+                <div class="text-center">
+                    <h2 class="text-4xl font-bold text-slate-800 mb-2">Shah Asif Bashir</h2>
+                    <p class="text-xl text-sky-600 font-medium mb-4">Application Developer</p>
+                    <div class="flex justify-center space-x-4 text-sm text-slate-500 mb-6">
+                        <span>Srinagar, J&K 190011</span>
+                        <span>|</span>
+                        <span>+91(901) 885-9791</span>
+                        <span>|</span>
+                        <span>sabashir@live.com</span>
+                    </div>
+                     <div class="flex justify-center space-x-6">
+                        <a href="https://www.linkedin.com/in/shah-asif-bashir-221771b1" target="_blank" class="text-sky-600 hover:text-sky-800 font-semibold">LinkedIn Profile</a>
+                        <a href="https://shahasifbashir.github.io" target="_blank" class="text-sky-600 hover:text-sky-800 font-semibold">Personal Website</a>
+                    </div>
+                </div>
+                <hr class="my-8 border-slate-200">
+                <h3 class="text-2xl font-bold text-slate-800 mb-4">Professional Summary</h3>
+                <p class="text-lg leading-relaxed text-slate-600">This section provides a high-level overview of my professional background and key areas of expertise. It highlights my experience as an Application Developer, my technical proficiency, and my ability to deliver impactful software solutions. Highly accomplished Application Developer with over 2 years of progressive experience in designing, developing, and maintaining robust server-side middleware solutions and RESTful APIs using **Java, Spring Boot, and SQL**. Proven expertise in **microservices development**, **Camunda workflows**, and seamlessly integrating diverse credit and payment services. Holds a **Master of Technology** from NIT Srinagar, leveraging a strong academic foundation in communication and information technology, machine learning, and data analysis. Demonstrated ability to drive innovation and contribute to impactful software solutions through projects achieving significant accuracy and efficiency gains.</p>
+            </div>
+        </section>
 
-					<!-- Logo -->
-						<div id="logo">
-							<span class="image avatar48"><img src="images/me.jpg" alt="" /></span>
-							<h1 id="title">Shah Asif Bashir</h1>
-							<p>Data Analyst</p>
-						</div>
+        <section id="skills" class="my-10 scroll-mt-20">
+            <h2 class="text-3xl font-bold text-center mb-8 text-slate-800">Technical Skills</h2>
+             <p class="text-center text-lg text-slate-600 mb-12 max-w-3xl mx-auto">This section showcases my technical capabilities, categorized for clarity. From programming languages and data analysis toolkits to web technologies and databases, this provides a comprehensive look at the tools I use to build, analyze, and innovate.</p>
+            <div id="skills-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+        </section>
 
-					<!-- Nav -->
-						<nav id="nav">
-							<ul>
-								<li><a href="#top" id="top-link"><span class="icon solid fa-home">Intro</span></a></li>
-								<li><a href="#portfolio" id="portfolio-link"><span class="icon solid fa-th">Portfolio</span></a></li>
-								<li><a href="#contact" id="contact-link"><span class="icon solid fa-envelope">Contact</span></a></li>
-							</ul>
-						</nav>
+        <section id="experience" class="my-10 scroll-mt-20">
+            <h2 class="text-3xl font-bold text-center mb-8 text-slate-800">Professional Experience</h2>
+             <p class="text-center text-lg text-slate-600 mb-12 max-w-3xl mx-auto">This interactive timeline details my career progression. Click on each role to expand and explore my responsibilities, accomplishments, and the technologies I utilized. This demonstrates my growth and the practical application of my skills in professional settings.</p>
+            <div id="experience-timeline" class="relative pl-10 border-l-2 border-slate-300"></div>
+        </section>
 
-				</div>
+        <section id="projects" class="my-10 scroll-mt-20">
+            <h2 class="text-3xl font-bold text-center mb-8 text-slate-800">Project Showcase</h2>
+            <p class="text-center text-lg text-slate-600 mb-12 max-w-3xl mx-auto">Here are some key projects where I've applied my skills to solve real-world problems. Click on any project to see the details, my role, and the quantifiable impact of my work, often visualized with a chart for clarity.</p>
+            <div id="projects-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+        </section>
 
-				<div class="bottom">
+        <section id="education" class="my-10 scroll-mt-20">
+            <h2 class="text-3xl font-bold text-center mb-8 text-slate-800">Education</h2>
+            <p class="text-center text-lg text-slate-600 mb-12 max-w-3xl mx-auto">This section outlines my academic background, which forms the foundation of my technical knowledge and problem-solving abilities.</p>
+            <div id="education-container" class="space-y-8 max-w-4xl mx-auto"></div>
+        </section>
 
-					<!-- Social Icons -->
-						<ul class="icons">
-							<li><a href="https://github.com/shahasifbashir" class="icon brands fa-github"><span class="label">Github</span></a></li>
-						</ul>
+    </main>
 
-				</div>
+    <footer class="bg-slate-800 text-white mt-16">
+        <div class="container mx-auto p-6 text-center text-slate-300">
+            <p>&copy; 2024 Shah Asif Bashir</p>
+             <div class="flex justify-center space-x-6 mt-4">
+                <a href="https://www.linkedin.com/in/shah-asif-bashir-221771b1" target="_blank" class="hover:text-sky-300">LinkedIn</a>
+                <a href="https://shahasifbashir.github.io" target="_blank" class="hover:text-sky-300">Website</a>
+            </div>
+        </div>
+    </footer>
+    
+    <div id="project-modal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4 z-50 hidden">
+        <div class="bg-white rounded-lg shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto p-6 md:p-8" id="modal-content">
+            <!-- Modal content is injected here -->
+        </div>
+    </div>
 
-			</div>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
 
-		<!-- Main -->
-			<div id="main">
+    const data = {
+        skills: [
+            { category: "Programming Languages", items: ["Java", "Python", "SQL", "JavaScript", "C", "PHP"] },
+            { category: "Machine Learning & Data Analysis", items: ["Scikit-learn", "Pandas", "NumPy", "Matplotlib", "Seaborn", "Foundational AI", "Data Analysis & Visualization"] },
+            { category: "Software & Tools", items: ["Eclipse", "Splunk", "MS Excel", "Jupyter Notebook", "Visual Studio", "Power BI", "Camunda Workflows"] },
+            { category: "Web Technologies", items: ["RESTful APIs", "HTML", "CSS", "Spring Framework", "Spring Boot", "Microservices", "API Integration"] },
+            { category: "Database", items: ["MySQL", "SQL"] },
+            { category: "Concepts & Methodologies", items: ["Data Structures & Algorithms", "Operating Systems", "Networking", "Predictive Modeling", "Regression Analysis", "Classification Models"] }
+        ],
+        experience: [
+            {
+                role: "Application Developer",
+                company: "TELUS International, India",
+                period: "February 2022 – Present",
+                description: [
+                    "Developed and maintained robust RESTful APIs in Spring, serving as the backend for a communications company and integrating critical credit tools like Experian, Infogix, and AKANA.",
+                    "Managed and enhanced integrated ordering services, ensuring timely updates and seamless customer experiences for diverse services.",
+                    "Designed, developed, and maintained various payment-related services, incorporating and integrating diverse third-party RESTful APIs.",
+                    "Contributed to cutting-edge microservice development, leveraging Camunda workflows to engineer impactful and scalable software solutions."
+                ],
+                tech: "Java, Spring, Spring Boot, SQL, Camunda Workflows"
+            },
+            {
+                role: "Intern Database Analyst",
+                company: "TECHORONIC LLC, Srinagar, J&K, India",
+                period: "May 2021 – December 2021",
+                description: [
+                    "Automated client data collection processes by building Python pipelines, resulting in a 15% reduction in data collection time.",
+                    "Collaborated with a team on the development and implementation of new quantitative models, maximizing efficiency and increasing productivity by 10%.",
+                    "Maintained large-scale databases and applied professional techniques to collect, analyze, and meticulously clean data from customers and partners.",
+                    "Partnered with the internal BI team to automate data generation using MS Excel and Python, reducing manual efforts by 40% and increasing overall process productivity by 2X."
+                ],
+                tech: "MySQL, SQL, Python"
+            },
+            {
+                role: "Data Analytics Consulting Virtual Internship",
+                company: "KPMG, India",
+                period: "June 2020 – July 2020",
+                description: [
+                    "Developed Python scripts to meticulously clean and analyze previous year's sales data, accurately predicting future product sales.",
+                    "Utilized regression models for predictive analysis, achieving a 90% predictive model accuracy in analyzing complex customer behavior across various parameters.",
+                    "Ensured 100% data quality across multiple projects by meticulously implementing checks using the Pandas library.",
+                    "Implemented various classification models to effectively identify distinct customer segments, significantly enhancing targeted marketing strategies.",
+                    "Applied Seaborn for advanced data visualization, uncovering critical insights for data-driven decision-making."
+                ],
+                tech: "Python (Scikit-learn, Pandas), Matplotlib, Seaborn"
+            }
+        ],
+        projects: [
+            {
+                title: "Diabetes Prediction Using ML",
+                org: "Central University of Kashmir",
+                description: [
+                    "Spearheaded the data collection process for a multilayer diabetes detection project, analyzing over 3000 patient documents.",
+                    "Cleaned and meticulously analyzed collected data using NumPy and Pandas, resulting in a refined dataset of 1500 patient records.",
+                    "Developed machine learning algorithms utilizing Scikit-learn, achieving a 96% accuracy for diabetes prediction.",
+                    "Created comprehensive business intelligence reports using Power BI, Matplotlib, and Seaborn for healthcare establishments."
+                ],
+                tech: "Excel, Python (Scikit-learn, Pandas, NumPy), Matplotlib, Power BI, Seaborn",
+                chart: { type: 'doughnut', data: [96, 4], label: '96% Prediction Accuracy', labels: ['Accuracy', 'Error']}
+            },
+            {
+                title: "Adaptive Epsilon Greedy Strategy",
+                org: "National Institute of Technology Srinagar",
+                description: [
+                    "Developed novel exploration strategies for finite systems based on epsilon-greedy exploration principles.",
+                    "Simulated finite systems using OpenAI's GYM library and engineered driver code for collecting 15,000 data points across various environments.",
+                    "Achieved a 10% average improvement in performance over traditional epsilon-greedy algorithms across three distinct finite state environments."
+                ],
+                tech: "Python (Scikit-learn, Pandas, NumPy), OpenAI GYM, Seaborn, Excel",
+                chart: { type: 'bar', data: [10], label: '+10% Avg. Improvement', labels: ['Performance Improvement']}
+            },
+            {
+                title: "Smart Helmet Using Arduino",
+                org: "SSM College of Engineering",
+                description: [
+                    "Engineered an innovative accident detection motorcycle helmet with integrated capabilities for informing emergency services and family members.",
+                    "Developed an Arduino interface for various vibration and pressure sensors, collecting data to detect possible accidents based on predefined criteria.",
+                    "Improved accident reporting time by 20% within the Kashmir region.",
+                    "Developed a low-cost communication device with GSM and internet capabilities, enhancing accident reporting time to family members via Google Maps by 30%."
+                ],
+                tech: "Arduino, GSM, Google Maps",
+                chart: { type: 'bar', data: [20, 30], label: 'Reporting Time Improvement', labels: ['Regional (20%)', 'Family (30%)']}
+            }
+        ],
+        education: [
+            {
+                degree: "Master of Technology (M.Tech) in Communication and Information Technology",
+                institution: "National Institute of Technology Srinagar",
+                period: "July 2018 – September 2020",
+                details: ["GPA: 8.9/10.00", "Ranked 1st in cohort"]
+            },
+            {
+                degree: "Bachelor of Engineering (B.E.) in Computer Science and Engineering",
+                institution: "University of Kashmir",
+                period: "August 2012 – August 2017",
+                details: ["Percentage: 76.4%"]
+            }
+        ]
+    };
+    
+    const skillsContainer = document.getElementById('skills-container');
+    data.skills.forEach(skillCat => {
+        const catDiv = document.createElement('div');
+        catDiv.className = 'bg-white p-6 rounded-lg shadow-md border border-slate-100';
+        let itemsHTML = skillCat.items.map(item => `<span class="inline-block bg-slate-200 text-slate-700 text-sm font-medium mr-2 mb-2 px-3 py-1 rounded-full">${item}</span>`).join('');
+        catDiv.innerHTML = `
+            <h3 class="text-xl font-bold mb-4 text-slate-800">${skillCat.category}</h3>
+            <div>${itemsHTML}</div>
+        `;
+        skillsContainer.appendChild(catDiv);
+    });
 
-				<!-- Intro -->
-					<section id="top" class="one dark cover">
-						<div class="container">
+    const experienceTimeline = document.getElementById('experience-timeline');
+    data.experience.forEach(exp => {
+        const expDiv = document.createElement('div');
+        expDiv.className = 'mb-10 ml-4 relative timeline-item';
+        expDiv.innerHTML = `
+            <div class="cursor-pointer">
+                <h3 class="text-xl font-bold text-slate-800">${exp.role}</h3>
+                <p class="font-semibold text-sky-600">${exp.company}</p>
+                <p class="text-sm text-slate-500 mb-2">${exp.period}</p>
+                <span class="text-xs text-blue-500 font-semibold expand-toggle">Click to expand ▼</span>
+            </div>
+            <div class="details hidden mt-4 pl-4 border-l-2 border-slate-200">
+                <ul class="list-disc list-inside space-y-2 text-slate-600">
+                    ${exp.description.map(d => `<li>${d}</li>`).join('')}
+                </ul>
+                <p class="mt-4 text-sm font-semibold">
+                    <span class="font-bold text-slate-700">Technology Used:</span> ${exp.tech}
+                </p>
+            </div>
+        `;
+        expDiv.querySelector('.cursor-pointer').addEventListener('click', (e) => {
+             const details = expDiv.querySelector('.details');
+             const toggleText = expDiv.querySelector('.expand-toggle');
+             details.classList.toggle('hidden');
+             if(details.classList.contains('hidden')){
+                toggleText.textContent = 'Click to expand ▼';
+             } else {
+                toggleText.textContent = 'Click to collapse ▲';
+             }
+        });
+        experienceTimeline.appendChild(expDiv);
+    });
 
-							<header>
-								<h2 class="alt">Hi! I'm <strong>Shah Asif Bashir</strong>,</h2>I completed my graduation (Bachelors of Engineering) from University of Kashmir via
-									SSM College of Engineering and Technology, Kashmir. The program taught me things about
-									systems, data and structures that likewise helped me during my Masters degree In addition to this, I completed my
-									Masters in Communication and Information Technology at NIT Srinagar where I worked on
-									data analysis and stochastic systems, where I was able to be among the top 1% of my
-									class. I am currently looking for a data analyst position.
-							
-							</header>
+    const projectsContainer = document.getElementById('projects-container');
+    const modal = document.getElementById('project-modal');
+    const modalContent = document.getElementById('modal-content');
+    let currentChart = null;
 
-							<footer>
-								<a href="#portfolio" class="button scrolly">My Projects</a>
-							</footer>
+    data.projects.forEach(project => {
+        const projectCard = document.createElement('div');
+        projectCard.className = 'bg-white p-6 rounded-lg shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all cursor-pointer border border-slate-200';
+        projectCard.innerHTML = `
+            <h3 class="text-xl font-bold text-slate-800 mb-2">${project.title}</h3>
+            <p class="text-md font-semibold text-sky-600 mb-4">${project.org}</p>
+            <p class="text-slate-600 text-sm">${project.description[0].substring(0, 100)}...</p>
+        `;
+        projectCard.addEventListener('click', () => openModal(project));
+        projectsContainer.appendChild(projectCard);
+    });
+    
+    function openModal(project) {
+        modalContent.innerHTML = `
+            <div class="flex justify-between items-start">
+                <div>
+                    <h3 class="text-2xl md:text-3xl font-bold text-slate-800">${project.title}</h3>
+                    <p class="font-semibold text-sky-600 mb-4">${project.org}</p>
+                </div>
+                <button id="close-modal-button" class="p-2 -mt-2 -mr-2 text-slate-500 hover:text-slate-800">&times;</button>
+            </div>
+            <div class="mt-4">
+                <ul class="list-disc list-inside space-y-2 text-slate-600 mb-6">
+                     ${project.description.map(d => `<li>${d}</li>`).join('')}
+                </ul>
+                 <p class="text-sm font-semibold">
+                    <span class="font-bold text-slate-700">Technology Used:</span> ${project.tech}
+                </p>
+                <div class="mt-6">
+                    <div class="chart-container">
+                        <canvas id="project-chart"></canvas>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
 
-						</div>
-					</section>
+        const ctx = document.getElementById('project-chart').getContext('2d');
+        if (currentChart) {
+            currentChart.destroy();
+        }
+        
+        const chartConfig = {
+            type: project.chart.type,
+            data: {
+                labels: project.chart.labels,
+                datasets: [{
+                    label: project.chart.label,
+                    data: project.chart.data,
+                    backgroundColor: project.chart.type === 'doughnut' 
+                        ? ['#0284c7', '#e2e8f0']
+                        : ['#0284c7', '#38bdf8'],
+                    borderColor: '#f8fafc',
+                    borderWidth: project.chart.type === 'doughnut' ? 4 : 0,
+                    borderRadius: project.chart.type === 'bar' ? 5 : 0,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: project.chart.type === 'doughnut' ? 'bottom' : 'top',
+                        display: project.chart.labels.length > 1,
+                    },
+                    title: {
+                        display: true,
+                        text: project.chart.label,
+                        font: { size: 16 }
+                    },
+                    tooltip: {
+                        backgroundColor: '#1e293b',
+                        titleFont: { size: 14 },
+                        bodyFont: { size: 12 },
+                        padding: 10,
+                        cornerRadius: 4,
+                    }
+                },
+                cutout: project.chart.type === 'doughnut' ? '60%' : '0%',
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        display: project.chart.type === 'bar',
+                        ticks: {
+                            callback: function(value) {
+                                return value + '%'
+                            }
+                        }
+                    },
+                    x: {
+                        display: project.chart.type === 'bar'
+                    }
+                }
+            }
+        };
 
-				<!-- Portfolio -->
-					<section id="portfolio" class="two">
-						<div class="container">
+        currentChart = new Chart(ctx, chartConfig);
+        
+        document.getElementById('close-modal-button').addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+    }
 
-							<header>
-								<h2>Portfolio</h2>
-							</header>
+    function closeModal() {
+        modal.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+        if (currentChart) {
+            currentChart.destroy();
+            currentChart = null;
+        }
+    }
 
-							<div class="row">
-								<div class="col-4 col-12-mobile">
-									<article class="item">
-										<a href="https://shahasifbashir.github.io/Covid19/" class="image fit"><img src="images/covid.png" alt="" /></a>
-										<header>
-											<h3>Covid 19 Dataset Analysis</h3>
-										</header>
-									</article>
-									<article class="item">
-										<a href="https://shahasifbashir.github.io" class="image fit"><img src="images/me.jpg" alt="" /></a>
-										<header>
-											<h3>My Portfolio</h3>
-										</header>
-									</article>
-								</div>
-							</div>
+    const educationContainer = document.getElementById('education-container');
+    data.education.forEach(edu => {
+        const eduDiv = document.createElement('div');
+        eduDiv.className = 'bg-white p-6 rounded-lg shadow-md border border-slate-100';
+        eduDiv.innerHTML = `
+            <h3 class="text-xl font-bold text-slate-800">${edu.degree}</h3>
+            <p class="font-semibold text-sky-600">${edu.institution}</p>
+            <p class="text-sm text-slate-500 mb-2">${edu.period}</p>
+            <ul class="list-inside list-disc text-slate-600">
+                ${edu.details.map(d => `<li>${d}</li>`).join('')}
+            </ul>
+        `;
+        educationContainer.appendChild(eduDiv);
+    });
+    
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileMenuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+    });
 
-						</div>
-					</section>
+    document.querySelectorAll('#mobile-menu a').forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+        });
+    });
 
+});
+</script>
 
-				<!-- Contact -->
-					<section id="contact" class="four">
-						<div class="container">
-
-							<header>
-								<h2>Contact</h2>
-							</header>
-
-
-							<form method="post" action="#">
-								<div class="row">
-									<div class="col-12">
-										<p>Srinagar, Jammu and Kashmir, India 190011</p>
-									</div>
-								</div>
-							</form>
-
-						</div>
-					</section>
-
-			</div>
-
-		<!-- Footer -->
-			<div id="footer">
-
-				<!-- Copyright -->
-					<ul class="copyright">
-						<li>&copy; All rights reserved Shah Asif Bashir.</li><li>Design: HTML5 UP<li>
-					</ul>
-
-			</div>
-
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-
-	</body>
+</body>
 </html>
